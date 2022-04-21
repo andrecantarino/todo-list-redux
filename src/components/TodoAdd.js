@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { addTodo } from '../redux/reducers/todo/actions'
 
 const TodoAdd = () => {
+  const dipatch = useDispatch();
   const [todo, setTodo] = useState('');
   const onAddBtnClick = () => {
     if (!todo) return
 
-    //add logic later
+    dipatch(addTodo(todo));
+    setTodo('');
   };
 
   return (
