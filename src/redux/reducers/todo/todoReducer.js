@@ -1,4 +1,8 @@
-import { ADD_TODO, COMPLETE_TODO } from './actionTypes';
+import {
+  ADD_TODO,
+  COMPLETE_TODO,
+  REMOVE_TODO
+} from './actionTypes';
 
 const initialState = {
   todos: []
@@ -25,6 +29,10 @@ const todoReducer = (state = initialState, action) => {
             (todo.id === action.payload)
               ? {...todo, completed: !todo.completed}
               : todo)
+        }
+      case REMOVE_TODO:
+        return {
+          todos: state.todos.filter((todo) => todo.id !== action.payload)
         }
       default:
         return state;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Todo from './TodoItem'
+import TodoItem from './TodoItem'
 import { useSelector } from 'react-redux'
 import styled from "styled-components";
 
@@ -22,7 +22,7 @@ const TodoList = () => {
     <StyledTodoList>
       {
         todos && todos.length > 0
-          ? todos.map(todo => <Todo key={todo.id} todo={todo}/>)
+          ? todos.map(todo => <TodoItem key={todo.id} todo={todo}/>)
           : <span>Empty todo list...</span>
       }
     </StyledTodoList>

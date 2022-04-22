@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { completeTodo } from '../redux/reducers/todo/actions'
+import { completeTodo, removeTodo } from '../redux/reducers/todo/actions'
 import styled from "styled-components";
 
 const StyledTodo = styled.li`
@@ -43,7 +43,7 @@ const TodoItem = (props) => {
       <span className={completed ? 'todo-completed' : ''}>
         {title}
       </span>
-      <button>x</button>
+      <button onClick={() => {dispatch(removeTodo(id))}}>x</button>
     </StyledTodo>
   )
 }
