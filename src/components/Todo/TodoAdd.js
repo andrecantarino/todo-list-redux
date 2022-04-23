@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../redux/reducers/todo/actions'
+import { addTodo } from '../../redux/reducers/todo/actions'
 import styled from "styled-components";
 
 const StyledTodoAdd = styled.div`
