@@ -3,30 +3,26 @@ import TodoList from '../components/Todo/TodoList';
 import TodoAdd from '../components/Todo/TodoAdd';
 import styled from "styled-components";
 
-const StyledTodoContainer = styled.div`
+const StyledTodo= styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 500px;
-  margin: 0 auto;
-  padding: 5rem 0;
+  width: 100%;
+  padding: 1rem 2rem;
 
   h2 {
-    width: 500px;
     font-size: 2rem;
     color: #F5CB5C;
   }
 `
 
-const TodoContainer = () => {
+const Todo = () => {
   return (
-    <StyledTodoContainer>
-      <h2>My TODO list</h2>
+    <StyledTodo>
+      <h2>TODO</h2>
       <TodoAdd />
       <TodoList />
-    </StyledTodoContainer>
+    </StyledTodo>
   )
 }
 
-export default TodoContainer;
+export default Todo;

@@ -4,26 +4,34 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import './index.css';
-import Menu from './components/Menu/Menu'
-import HomeContainer from './pages/HomeContainer';
-import TodoContainer from './pages/TodoContainer';
+/** Components */
+import Page from './components/Page/Page';
+/** Pages */
+import Home from './pages/Home';
+import Todo from './pages/Todo';
+import Notes from './pages/Notes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <Menu />
-        <Routes>
-          <Route
-            path="/"
-            element={<HomeContainer />}
-          />
-          <Route
-            path="/todo"
-            element={<TodoContainer />}
-          />
-        </Routes>
+        <Page>
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/todo"
+              element={<Todo />}
+            />
+            <Route
+              path="/notes"
+              element={<Notes />}
+            />
+          </Routes>
+        </Page>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>

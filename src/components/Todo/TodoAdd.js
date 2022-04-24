@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledTodoAdd = styled.div`
   display: flex;
-  padding: 1rem;
+  padding: 1rem 0;
 
   input {
     width: 400px;
