@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledMenu = styled.div`
   display: flex;
-  padding: 1rem;
+  flex-direction: column;
 
   ul {
     display: flex;
@@ -32,6 +32,9 @@ const Menu = () => {
         </li>
         <li>
           <Link to="/todo">Todo</Link>
+        </li>
+        <li>
+          <Link to="/notes">Notes</Link>
         </li>
       </ul>
     </StyledMenu>
