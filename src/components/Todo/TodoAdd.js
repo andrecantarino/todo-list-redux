@@ -20,7 +20,7 @@ const StyledTodoAdd = styled.div`
 `
 
 const TodoAdd = () => {
-  const dipatch = useDispatch();
+  const dispatch = useDispatch();
   const [todo, setTodo] = useState('');
 
   const handleKeyDown = (event) => {
@@ -32,7 +32,7 @@ const TodoAdd = () => {
   const onAddBtnClick = () => {
     if (!todo) return
 
-    dipatch(addTodo(todo));
+    dispatch(addTodo(todo));
     setTodo('');
   };
 
