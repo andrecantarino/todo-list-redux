@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import { useDispatch } from 'react-redux';
+import { addNote } from '../redux/reducers/notes/actions';
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -21,6 +23,7 @@ const StyledNotes = styled.div`
     display: flex;
     flex-direction: column;
     color: #E8EDDF;
+    margin-top: 1rem;
   }
   .form-text {
     display: flex;
@@ -29,12 +32,20 @@ const StyledNotes = styled.div`
     height: 32px;
     margin-top: 0.4rem;
   }
+  .form-textarea {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 200px;
+    margin-top: 0.4rem;
+  }
   .form-button {
     width: 100px;
     height: 32px;
     background-color: #F5CB5C;
     color: #242423;
     border-radius: 0.2rem;
+    margin-top: 1rem;
   }
   .form-error {
     color: #f6646f;
@@ -44,26 +55,19 @@ const StyledNotes = styled.div`
 `
 
 const Notes = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      nome: "",
-      email: "",
-      idade: "",
+      title: "",
+      note: "",
     },
     validationSchema: yup.object({
-      nome: yup.string().required("O campo é obrigatório."),
-      email: yup
-        .string()
-        .email("E-mail inválido.")
-        .required("O campo é obrigatório."),
-      idade: yup
-        .number()
-        .required("O campo é obrigatório.")
-        .positive("O campo deve ser positivo.")
-        .integer("O campo deve ser um número inteiro."),
+      title: yup.string().required("O campo é obrigatório."),
+      note: yup.string().required("O campo é obrigatório."),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (values, { resetForm }) => {
+      dispatch(addNote(values));
+      resetForm();
     },
   });
 
@@ -71,46 +75,32 @@ const Notes = () => {
     <StyledNotes>
       <h2>Notes</h2>
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="nome" className="form-label">Nome</label>
+        <label htmlFor="title" className="form-label">Title</label>
         <input
-          id="nome"
-          name="nome"
+          id="title"
+          name="title"
           type="text"
           className="form-text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.nome}
+          value={formik.values.title}
         />
-        {formik.touched.nome && formik.errors.nome ? (
-          <div className="form-error">{formik.errors.nome}</div>
+        {formik.touched.title && formik.errors.title ? (
+          <div className="form-error">{formik.errors.title}</div>
         ) : null}
-        <label htmlFor="email" className="form-label">E-mail</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          className="form-text"
+        <label htmlFor="note" className="form-label">Note</label>
+        <textarea
+          id="note"
+          name="note"
+          className="form-textarea"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.note}
         />
-        {formik.touched.email && formik.errors.email ? (
-          <div className="form-error">{formik.errors.email}</div>
+        {formik.touched.note && formik.errors.note ? (
+          <div className="form-error">{formik.errors.note}</div>
         ) : null}
-        <label htmlFor="idade" className="form-label">Idade</label>
-        <input
-          id="idade"
-          name="idade"
-          type="number"
-          className="form-text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.idade}
-        />
-        {formik.touched.idade && formik.errors.idade ? (
-          <div className="form-error">{formik.errors.idade}</div>
-        ) : null}
-        <button type="submit" className="form-button">Enviar</button>
+        <button type="submit" className="form-button">Submit</button>
       </form>
     </StyledNotes>
   )
